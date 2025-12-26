@@ -51,7 +51,6 @@ def load_knowledge_base(directory, read_rag_file: Optional[str] = None):
 def setup_context_cache():
     """
     Uses the new SDK client.caches to create or retrieve a cache.
-    Note: Minimum 2,048 tokens required.
     """
     cache_display_name = "nigeria-tax-act-2025-cache"
     

@@ -38,7 +38,6 @@ async def chat_api(
 ):
     try:
         # 1. Correctly build the current message part
-        # The new SDK uses types.Part(text=...) instead of .from_text()
         current_parts = [types.Part(text=message)]
         
         if file:
