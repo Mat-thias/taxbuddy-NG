@@ -1,0 +1,123 @@
+:root {
+    --ng-green-dark: #008751;
+    --ng-green-light: #23a455;
+    --finance-gold: #D4AF37;
+    --off-white: #f8fdf9;
+    --text-dark: #1a2e22;
+    --border-radius: 12px;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--off-white);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: radial-gradient(var(--ng-green-light) 0.5px, transparent 0.5px), radial-gradient(var(--ng-green-light) 0.5px, var(--off-white) 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    background-color: #f0f7f2; /* Subtle background tint */
+}
+
+/* Navigation */
+.navbar {
+    background: linear-gradient(135deg, var(--ng-green-dark), var(--ng-green-light));
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 135, 81, 0.2);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+}
+
+.brand img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--finance-gold);
+}
+
+/* Main Container */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    flex: 1;
+}
+
+/* Cards */
+.card {
+    background: white;
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-top: 4px solid var(--ng-green-dark);
+}
+
+h1 { color: var(--ng-green-dark); }
+h2 { color: var(--text-dark); }
+
+/* Buttons & Forms */
+.btn-primary {
+    background-color: var(--ng-green-dark);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover { background-color: var(--ng-green-light); }
+
+textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+    box-sizing: border-box; /* Important for padding */
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--ng-green-dark);
+}
+
+/* Response Area */
+#response-area {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f4fcf7;
+    border-left: 4px solid var(--finance-gold);
+    border-radius: 8px;
+    display: none; /* Hidden by default */
+}
+
+.loading { display: none; color: var(--ng-green-dark); font-weight: bold;}

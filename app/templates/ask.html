@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h1>Ask Your Tax Advisor</h1>
+    <p>Describe your scenario regarding the 2026 tax changes (e.g., "My SME earns 40M Naira turnover, what is my CIT rate?").</p>
+
+    <form id="tax-form">
+        <textarea id="question-input" rows="5" placeholder="Type your financial question here..."></textarea>
+        <br><br>
+        <button type="submit" class="btn-primary">Get Advice</button>
+    </form>
+
+    <div id="loading-indicator" class="loading">
+        Analyzing 2026 Tax Acts... <span style="font-size: 20px;">🇳🇬💰</span>
+    </div>
+
+    <div id="response-area">
+        <strong>Advisor Response:</strong>
+        <p id="answer-text" style="white-space: pre-wrap;"></p>
+    </div>
+</div>
+
+<script>
+    document.getElementById('tax-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const questionInput = document.getElementById('question-input');
+        const loading = document.getElementById('loading-indicator');
+        const responseArea = document.getElementById('response-area');
+        const answerText = document.getElementById('answer-text');
+
+        const question = questionInput.value.trim();
+        if (!question) return alert("Please enter a question.");
+
+        // UI Reset
+        loading.style.display = 'block';
+        responseArea.style.display = 'none';
+        answerText.textContent = '';
+
+        try {
+            // Call our own backend API
+            const response = await fetch('/api/ask', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                // IMPORTANT: Must match the Pydantic model {"question": "..."}
+                body: JSON.stringify({ question: question })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                answerText.textContent = data.answer;
+                responseArea.style.display = 'block';
+            } else {
+                answerText.textContent = "Error: " + (data.detail || "Could not fetch advice.");
+                responseArea.style.display = 'block';
+            }
+
+        } catch (error) {
+            answerText.textContent = "Network error. Please try again.";
+            responseArea.style.display = 'block';
+        } finally {
+            loading.style.display = 'none';
+        }
+    });
+</script>
+{% endblock %}
